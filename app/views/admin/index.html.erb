@@ -1,0 +1,46 @@
+<!--<div class ="container">
+    <table class="table table-hover" ng-show="dataPresent">
+        <tr>
+            <th>Index</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Location</th>
+            <th>Image</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat="datum in data">
+            <td>{{datum.id}}</td>
+            <td>{{datum.first_name}}</td>
+            <td>{{datum.last_name}} </td>
+            <td>{{datum.gender}} </td>
+             <td>{{datum.latitude}} {{datum.longtitude}}</td>
+            <td>{{datum.location}}</td>
+            <td><a href="https://www.google.com/maps/search/?api=1&query={{datum.latitude}},{{datum.longtitude}}" >{{datum.location}}</a></td>
+            <%# <td><button class="btn btn-primary" ng-click="editDetail(datum)" >Edit</button></td>%>
+            <td style="width:10%"><img src="{{datum.image.url}}" width="100%" /></td>
+            <td><button class="btn btn-warning" ng-click="deleteDetail(datum)" >Delete</button></td> 
+        </tr>
+    </table>
+    <div ng-show="!dataPresent">
+        <h4>No Details Available</h4>
+        <hr>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var json={
+        "data" : <%= @detail.to_json.html_safe%>
+    }
+</script>-->
+
+<%=render "/crud/list" %>
+<div>
+    <a href="#" ng-click="download()">Download All Images</a>
+</div>
+<div>
+    <a href="#" ng-click="downloadPdf()">Download PDF</a>
+</div>
+<div>
+    <a href="#" ng-click="downloadXLS()">Download EXCEL</a>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Crud</title>
+    <style>
+        #image_id{
+            width:100%;
+        }
+    </style>
+  <%= javascript_include_tag 'application'%>
+  <%= stylesheet_link_tag 'application'%>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="app">
+  <div ng-controller="detailController">
+<table class="table table-hover" ng-show="dataPresent">
+    <tr>
+        <th>Index</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Location</th>
+        <th>Image</th>
+    </tr>
+    <% @details.each do |detail|%>
+        <tr>
+            <td><%= detail.id%></td>
+            <td><%= detail.first_name%></td>
+            <td><%= detail.last_name%></td>
+            <td><%= detail.gender%></td>
+            <td><%= link_to  detail.location , "https://www.google.com/maps/search/?api=1&query=#{detail.latitude},#{detail.longtitude}" %></td> 
+            <td style="width:10%"><%= wicked_pdf_image_tag detail.image ,id: 'image_id' %></td>
+        </tr>
+    <%end%>
+  <!--  <tr ng-repeat="datum in data">
+        <td>{{datum.id}}</td>
+        <td>{{datum.first_name}}</td>
+        <td>{{datum.last_name}} </td>
+        <td>{{datum.gender}} </td>
+        <td>{{datum.latitude}} {{datum.longtitude}}</td>
+        <td>{{datum.location}}</td>
+        <td><a href="https://www.google.com/maps/search/?api=1&query={{datum.latitude}},{{datum.longtitude}}" >{{datum.location}}</a></td>
+        <%# <td><button class="btn btn-primary" ng-click="editDetail(datum)" >Edit</button></td>%>
+        <td style="width:10%"><img src="{{datum.image.url}}" width="100%" /></td>
+        <td><button class="btn btn-warning" ng-click="deleteDetail(datum)" >Delete</button></td> 
+    </tr> -->
+</table>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+debugger
+    var json={
+        "data" : <%= @detail.to_json.html_safe%>
+    }
+    var states=<%= @response.to_json.html_safe%>
+
+</script> 

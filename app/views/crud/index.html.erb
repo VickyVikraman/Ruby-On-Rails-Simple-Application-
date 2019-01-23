@@ -1,0 +1,55 @@
+
+<div class="container">
+    <form class="form-horizontal" method="post"  action="/crud" enctype="multipart/form-data" >
+        <div class="form-group">
+            <label for="firstName" class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-6">
+                <input type="text" id="firstName" name="first_name" class="form-control" ng-model="student.first_name" />
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+            <div class="col-sm-6">
+                <input type="text" id="lastName" name="last_name" class="form-control" ng-model="student.last_name" />
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="gender" class="col-sm-3 control-label">Gender</label>
+            <div class="col-sm-2">
+                <select id="gender" class="form-control" name="gender" ng-model="student.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="col-sm-7"></div>
+        </div>
+        <div  class="form-group">
+            <label for="state" class="col-sm-3 control-label">State</label>
+            <div class="col-sm-2">
+                <select id="state" class="form-control" name="state" ng-model="data.state" ng-change="selectDistrict(data.state)" >
+                        <option   ng-repeat="state in states.states" >{{state.state}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+        <label for="district" class="col-sm-3 control-label">District</label>
+    <div class="col-sm-2">
+                <select id="district" class="form-control" name="districts" ng-model="data.district" >
+                        <option  ng-repeat="district in districts">{{district}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+     <input type="file" name="image" fileread="image"/>
+        </div>
+        <div class="form-group col-sm-6">
+            <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3"  />
+            <input type="reset" value="Reset" class="btn btn-danger" ng-click="resetForm()" >
+        </div>
+    </form>
+    <%=render "crud/list"%>
+</div>
